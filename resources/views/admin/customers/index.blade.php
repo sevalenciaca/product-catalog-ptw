@@ -1,9 +1,9 @@
-<x-app-layouts title="Gestión de Productos">
-    @if (session('info'))
+<x-app-layouts title="Gestión de Clientes">
+    {{-- @if (session('info'))
         <x-alert>{{ session('info') }}</x-alert>
-    @endif
+    @endif --}}
     <div class="text-right">
-        <a href="{{ route('products.create') }}" type="button" class="px-3 py-2 uppercase text-sm bg-gray-800 hover:bg-gray-700 text-white rounded-md shadow">crear producto</a>
+        <a href="{{ route('customers.create') }}" type="button" class="px-3 py-2 uppercase text-sm bg-gray-800 hover:bg-gray-700 text-white rounded-md shadow">crear producto</a>
     </div>
     <div class="mt-5 flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -14,23 +14,22 @@
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Nombre
+                                    ID
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Estado
+                                    Nombre completo
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Stock
+                                    Email
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Precio
+                                    Celular
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Descripción
+                                <th scope="col" class="relative px-6 py-3">
+                                    <span class="sr-only">Products</span>
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
                                     <span class="sr-only">Edit</span>
@@ -38,38 +37,22 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($products as $product)
+                            @foreach ($customers as $customer)
                                 <tr>
                                     <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
-                                                <img class="h-10 w-10 rounded-sm" src="@if($product->image) {{ Storage::url($product->image->url) }} @else https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761__340.jpg @endif" alt="">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 uppercase">
-                                                    {{ $product->name }}
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    {{ $product->category->name }}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="text-sm text-gray-900">{{ $customer->id }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        @if ($product->status == true)
-                                            <i class="fas fa-check-circle text-green-600"></i>
-                                        @else
-                                        <i class="fas fa-times-circle text-red-600"></i>
-                                        @endif
+                                        <div class="text-sm text-gray-900">{{ $customer->full_name }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">{{ $product->stock }}</div>
+                                        <div class="text-sm text-gray-900">{{ $customer->email }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">${{ $product->price }}</div>
+                                        <div class="text-sm text-gray-900">{{ $customer->phone }}</div>
                                     </td>
-                                    <td class="px-6 py-4 text-xs text-gray-500">
-                                        {{ $product->description }}
+                                    <td class="px-6 py-4 text-right font-medium">
+                                        <a href="{{ route('home', $customer) }}" type="button" class="px-3 py-2 uppercase text-xs bg-gray-800 hover:bg-gray-700 text-white rounded shadow"><i class="fas fa-list"></i> productos</a>
                                     </td>
                                     <td class="px-6 py-4 text-right font-medium">
                                         <div class="flex items-center justify-end space-x-3">

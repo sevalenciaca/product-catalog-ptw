@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +18,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CategorySeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            CustomerSeeder::class
         ]);
     }
 }

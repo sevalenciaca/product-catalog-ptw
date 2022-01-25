@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Customer;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class CustomerController extends Controller
 {
-
-    public function home(Customer $customer)
-    {
-        $products = Product::all();
-        return view('home', compact('products', 'customer'));
-    }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('admin.products.index', [
-            'products' => Product::all()
+        return view('admin.customers.index', [
+            'customers'=>Customer::all()
         ]);
     }
 
@@ -31,9 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create', [
-            'categories' => Category::pluck('name', 'id')
-        ]);
+        //
     }
 
     /**
@@ -44,12 +37,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        if ($request->file('file')) {
-            $url = Storage::put('products', $request->file('file'));
-            $product->image()->create(['url'=> $url,]);
-        }
-        return redirect()->route('products.index')->with('info', 'Producto creado satisfactoriamente');
+        //
     }
 
     /**

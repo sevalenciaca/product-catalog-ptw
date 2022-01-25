@@ -13,9 +13,9 @@ class Product extends Model
         'name',
         'price',
         'description',
-        'picture',
-        'color',
-        'size'
+        'stock',
+        'status',
+        'category_id'
     ];
     
     public function image()
@@ -26,5 +26,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany(Customer::class);
     }
 }

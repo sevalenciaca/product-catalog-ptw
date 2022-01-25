@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home')->name('home');
-Route::resource('/admin', ProductController::class)->names('products');
+Route::get('/{customer?}', [ProductController::class, 'home'])->name('home');
+Route::prefix('admin')->group(function () {
+    Route::resource('productos', ProductController::class)->names('products');
+    Route::resource('clientes', CustomerController::class)->names('customers');
+});
+Route::get('venta/{customer}/{product}', SaleController::class)->name('sale');

@@ -11,6 +11,7 @@
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="{{ route('home') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('home')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif">Inicio</a>
                         <a href="{{ route('products.index') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('products.index') or request()->routeIs('products.create')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif">Productos</a>
+                        <a href="{{ route('customers.index') }}" class="px-3 py-2 rounded-md text-sm font-medium @if(request()->routeIs('customers.index') or request()->routeIs('customers.create')) bg-gray-900 text-white @else text-gray-300 hover:bg-gray-700 hover:text-white @endif">Clientes</a>
                         <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Clientes</a>
                         <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ventas</a>
                     </div>
